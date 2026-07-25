@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools — Pocket Ledger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark">PL</span> Pocket Ledger</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Get in Touch</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" style="padding-bottom:20px;">
+  <div class="wrap" style="grid-template-columns:1fr; text-align:center;">
+    <div>
+      <div class="eyebrow" style="justify-content:center;">Tools</div>
+      <h1>Run the numbers <em>on your own money.</em></h1>
+      <p class="sub" style="margin-left:auto; margin-right:auto;">Four free calculators. Nothing is saved or sent anywhere — it's just math, in your browser.</p>
+    </div>
+  </div>
+</section>
+
+<section class="teach">
+  <div class="wrap">
+
+    <div class="tools-nav">
+      <button class="tool-tab active" data-panel="panel-budget">Budget Calculator</button>
+      <button class="tool-tab" data-panel="panel-savings">Savings Goal Tracker</button>
+      <button class="tool-tab" data-panel="panel-interest">Compound Interest</button>
+      <button class="tool-tab" data-panel="panel-quiz">Needs vs. Wants Quiz</button>
+    </div>
+
+    <!-- BUDGET CALCULATOR -->
+    <div class="tool-panel active" id="panel-budget">
+      <div class="tool-grid">
+        <div>
+          <div class="field">
+            <label>How much money are you working with? (per month)</label>
+            <input type="number" id="bc-income" value="100" min="0" step="1">
+          </div>
+          <div class="field">
+            <div class="range-row"><span>Save</span><span class="val" id="bc-save-val">20%</span></div>
+            <input type="range" id="bc-save" min="0" max="100" value="20">
+          </div>
+          <div class="field">
+            <div class="range-row"><span>Spend</span><span class="val" id="bc-spend-val">60%</span></div>
+            <input type="range" id="bc-spend" min="0" max="100" value="60">
+          </div>
+          <div class="field">
+            <div class="range-row"><span>Goal fund</span><span class="val" id="bc-goal-val">20%</span></div>
+            <p style="font-size:0.82rem; color:var(--ink-soft);">Whatever's left after Save + Spend goes here automatically.</p>
+          </div>
+        </div>
+        <div class="result-card">
+          <h4>Your monthly split</h4>
+          <div class="bars">
+            <div class="bar-col"><div class="bar" id="bar-save" style="height:20%; background:var(--purple);"></div><span>Save</span></div>
+            <div class="bar-col"><div class="bar" id="bar-spend" style="height:60%; background:var(--teal);"></div><span>Spend</span></div>
+            <div class="bar-col"><div class="bar" id="bar-goal" style="height:20%; background:var(--gold);"></div><span>Goal</span></div>
+          </div>
+          <div class="result-row"><span>Save</span><span class="amt" id="out-save">$0.00</span></div>
+          <div class="result-row"><span>Spend</span><span class="amt" id="out-spend">$0.00</span></div>
+          <div class="result-row"><span>Goal fund</span><span class="amt" id="out-goal">$0.00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAVINGS GOAL TRACKER -->
+    <div class="tool-panel" id="panel-savings">
+      <div class="tool-grid">
+        <div>
+          <div class="field">
+            <label>What are you saving for?</label>
+            <input type="text" id="sg-name" placeholder="e.g. New headphones">
+          </div>
+          <div class="field">
+            <label>Total cost ($)</label>
+            <input type="number" id="sg-amount" value="120" min="0" step="1">
+          </div>
+          <div class="field">
+            <label>Already saved ($)</label>
+            <input type="number" id="sg-already" value="20" min="0" step="1">
+          </div>
+          <div class="field">
+            <label>How much can you save per week? ($)</label>
+            <input type="number" id="sg-perweek" value="10" min="0" step="1">
+          </div>
+        </div>
+        <div class="result-card">
+          <h4>Your timeline</h4>
+          <div class="bigstat">
+            <div class="num" id="sg-out-weeks">—</div>
+            <div class="label">until you reach it</div>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="sg-progress-fill" style="width:0%;"></div></div>
+          <div class="result-row"><span>Progress</span><span class="amt" id="sg-pct">0%</span></div>
+          <div class="result-row"><span>Goal</span><span class="amt" id="sg-out-name">your goal</span></div>
+          <div class="result-row"><span>Target date</span><span class="amt" id="sg-out-date">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPOUND INTEREST -->
+    <div class="tool-panel" id="panel-interest">
+      <div class="tool-grid">
+        <div>
+          <div class="field">
+            <label>Starting amount ($)</label>
+            <input type="number" id="ci-start" value="50" min="0" step="1">
+          </div>
+          <div class="field">
+            <label>Add per month ($)</label>
+            <input type="number" id="ci-monthly" value="10" min="0" step="1">
+          </div>
+          <div class="field">
+            <div class="range-row"><span>Annual interest rate</span><span class="val" id="ci-rate-val">4%</span></div>
+            <input type="range" id="ci-rate" min="0" max="12" step="0.5" value="4">
+          </div>
+          <div class="field">
+            <div class="range-row"><span>Years</span><span class="val" id="ci-years-val">5 years</span></div>
+            <input type="range" id="ci-years" min="1" max="20" step="1" value="5">
+          </div>
+        </div>
+        <div class="result-card">
+          <h4>Where you end up</h4>
+          <div class="bigstat">
+            <div class="num" id="ci-total">$0.00</div>
+            <div class="label">total balance</div>
+          </div>
+          <div class="bars">
+            <div class="bar-col"><div class="bar" id="ci-bar-contrib" style="background:var(--purple);"></div><span>You put in</span></div>
+            <div class="bar-col"><div class="bar" id="ci-bar-interest" style="background:var(--teal);"></div><span>Interest earned</span></div>
+          </div>
+          <div class="result-row"><span>You contributed</span><span class="amt" id="ci-contrib">$0.00</span></div>
+          <div class="result-row"><span>Interest earned</span><span class="amt" id="ci-interest">$0.00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEEDS VS WANTS QUIZ -->
+    <div class="tool-panel" id="panel-quiz">
+      <div class="quiz-card">
+        <div class="eyebrow" style="justify-content:center;">Quick quiz</div>
+        <div class="quiz-item" id="nw-item">Loading...</div>
+        <div class="quiz-btns">
+          <button class="quiz-btn" id="nw-need">It's a Need</button>
+          <button class="quiz-btn" id="nw-want">It's a Want</button>
+        </div>
+        <div class="quiz-feedback" id="nw-feedback"></div>
+        <div class="quiz-score" id="nw-score"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="note">
+  <div class="wrap">
+    <div class="note-box">
+      <div class="mark">i</div>
+      <p><strong>The honest print:</strong> These tools are for learning and planning, not professional financial advice. They use simple, general math — for real investing decisions, talk to a parent, guardian, or a licensed professional.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <div class="brand display">Pocket Ledger</div>
+    <p>Free money lessons for teens · not professional financial advice</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
